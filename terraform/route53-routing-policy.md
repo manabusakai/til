@@ -2,7 +2,7 @@
 
 Terraform を使って Route 53 レコードのルーティングポリシーを変更するには、いくつかのステップを踏む必要がある。ここでは、ダウンタイムなしにルーティングポリシーを Simple から Weighted に変更する手順を検証する。
 
-`test.manabusakai.com` のレコードを `1.1.1.1` と `2.2.2.2` を 50 % ずつ返す Weighted ルーティングポリシーに変更する。
+`test.manabusakai.com` のレコードを `192.0.2.1` と `192.0.2.2` を 50 % ずつ返す Weighted ルーティングポリシーに変更する。
 
 ```terraform
 resource "aws_route53_record" "test" {
@@ -10,7 +10,7 @@ resource "aws_route53_record" "test" {
   name    = "test.manabusakai.com"
   type    = "A"
   ttl     = "10"
-  records = ["1.1.1.1"]
+  records = ["192.0.2.1"]
 }
 ```
 
@@ -30,7 +30,7 @@ resource "aws_route53_record" "test_blue" {
   name           = "test.manabusakai.com"
   type           = "A"
   ttl            = "10"
-  records        = ["1.1.1.1"]
+  records        = ["192.0.2.1"]
   set_identifier = "blue"
 
   weighted_routing_policy {
@@ -47,7 +47,7 @@ resource "aws_route53_record" "test_blue" {
   name           = "test.manabusakai.com"
   type           = "A"
   ttl            = "10"
-  records        = ["1.1.1.1"]
+  records        = ["192.0.2.1"]
   set_identifier = "blue"
 
   weighted_routing_policy {
@@ -60,7 +60,7 @@ resource "aws_route53_record" "test_green" {
   name           = "test.manabusakai.com"
   type           = "A"
   ttl            = "10"
-  records        = ["2.2.2.2"]
+  records        = ["192.0.2.2"]
   set_identifier = "green"
 
   weighted_routing_policy {
@@ -77,7 +77,7 @@ resource "aws_route53_record" "test_blue" {
   name           = "test.manabusakai.com"
   type           = "A"
   ttl            = "10"
-  records        = ["1.1.1.1"]
+  records        = ["192.0.2.1"]
   set_identifier = "blue"
 
   weighted_routing_policy {
@@ -90,7 +90,7 @@ resource "aws_route53_record" "test_green" {
   name           = "test.manabusakai.com"
   type           = "A"
   ttl            = "10"
-  records        = ["2.2.2.2"]
+  records        = ["192.0.2.2"]
   set_identifier = "green"
 
   weighted_routing_policy {
