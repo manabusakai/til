@@ -7,7 +7,7 @@ AWS CLI で RDS のインスタンスタイプを変更する手順を検証す�
 ほとんどの作業はメンテナンス中に実施するはずなので `--apply-immediately` オプションを付けて実行する。
 
 ```sh
-db_identifier="xxxxxxxx"
+export db_identifier="xxxxxxxx"
 
 aws rds modify-db-instance \
   --db-instance-identifier $db_identifier \
